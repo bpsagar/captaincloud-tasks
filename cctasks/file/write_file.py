@@ -2,6 +2,7 @@ from captaincloud.task import field
 from captaincloud.task import Task, TaskImpl
 
 import codecs
+import six
 
 
 class WriteTextFileImpl(TaskImpl):
@@ -23,7 +24,7 @@ class WriteTextFile(Task):
     class Input:
         filepath = field.StringField()
         buffersize = field.IntegerField(default=102400)
-        encoding = field.StringField(default='utf8')
+        encoding = field.StringField(default=six.u('utf8'))
         stream = field.StringStreamField()
 
     class Output:
