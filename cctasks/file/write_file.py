@@ -1,5 +1,6 @@
 from captaincloud.task import field
 from captaincloud.task import Task, TaskImpl
+from captaincloud.task.registry import TaskRegistry
 
 import codecs
 import six
@@ -16,8 +17,9 @@ class WriteTextFileImpl(TaskImpl):
             fd.close()
 
 
+@TaskRegistry.register
 class WriteTextFile(Task):
-    ID = 'cctasks.file.text.writer'
+    ID = 'cctasks.file.text.write'
     NAME = 'Write Text File'
     impl = WriteTextFileImpl
 
@@ -42,8 +44,9 @@ class WriteBinaryFileImpl(TaskImpl):
             fd.close()
 
 
+@TaskRegistry.register
 class WriteBinaryFile(Task):
-    ID = 'cctasks.file.binary.writer'
+    ID = 'cctasks.file.binary.write'
     NAME = 'Write Binary File'
     impl = WriteBinaryFileImpl
 

@@ -1,5 +1,6 @@
 from captaincloud.task import field
 from captaincloud.task import Task, TaskImpl
+from captaincloud.task.registry import TaskRegistry
 
 import codecs
 import six
@@ -14,9 +15,9 @@ class ReadTextFileImpl(TaskImpl):
             while data:
                 Output.stream.write(data)
                 data = fd.read(self.task.Input.buffersize)
-            fd.close()
 
 
+@TaskRegistry.register
 class ReadTextFile(Task):
     ID = 'cctasks.file.text.read'
     NAME = 'Read Text File'
@@ -40,9 +41,9 @@ class ReadBinaryFileImpl(TaskImpl):
             while data:
                 Output.stream.write(data)
                 data = fd.read(self.task.Input.buffersize)
-            fd.close()
 
 
+@TaskRegistry.register
 class ReadBinaryFile(Task):
     ID = 'cctasks.file.binary.read'
     NAME = 'Read Binary File'
